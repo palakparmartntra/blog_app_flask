@@ -1,14 +1,14 @@
+from re import I
 from flask import Flask
 from flask_migrate import Migrate 
-from datetime import datetime
-from flask_restplus import Api ,Resource
+from flask_restplus import Api
 from flask import request, jsonify, session
 from flask_bcrypt import Bcrypt
 import jwt
 from datetime import datetime
-
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:postgres@localhost:5432/blog"
@@ -21,5 +21,6 @@ bcrypt = Bcrypt(app)
 api = Api(app)
 
 ma = Marshmallow(app)
+from app.routes import initialize_routes
 
-from app import views
+initialize_routes(api)
