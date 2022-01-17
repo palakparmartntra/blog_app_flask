@@ -1,5 +1,8 @@
 from app.models import User, Article, Comment
 from . import ma
+from marshmallow import fields
+
+from marshmallow.validate import Length, Range
 
 class UserSchema(ma.Schema):
     class Meta:
@@ -11,6 +14,8 @@ users_schema = UserSchema(many=True)
 
 
 class ArticleSchema(ma.Schema):
+    title = fields.Str(required=True, validate=Length(min=4))
+
     class Meta:
         model = Article
         fields = ("title", "content", "date", "u_id", )
