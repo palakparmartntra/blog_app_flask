@@ -1,4 +1,4 @@
-from app.views import (
+from app.controller import (
                         SignupApi,
                         LoginApi, 
                         UserProfile, 
